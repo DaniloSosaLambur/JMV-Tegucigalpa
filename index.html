@@ -1,0 +1,640 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101f72">
+  <meta name="description" content="Conoce Juventudes Marianas Vicentinas Honduras, nuestras comunidades, formación y servicio.">
+  <title>JMV Tegucigalpa | Juventudes Marianas Vicentinas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700;800&family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul: #18027b;
+      --negro: #000000;
+      --fuente-titulos: "Anton", sans-serif;
+      --fuente-textos: "Poppins", sans-serif;
+      --fuente-decorativa: "Baloo 2", cursive;
+      --azul-claro: #1ba5c0;
+      --amarillo: #f9a40a;
+      --blanco: #ffffff;
+      --texto: #000000;
+      --fondo: #f7f9ff;
+      --radio: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--fuente-textos);
+      color: var(--texto);
+      background: var(--fondo);
+      overflow-x: hidden;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(100% - 36px, 1080px);
+      margin-inline: auto;
+    }
+
+    h1, h2, .section-heading { font-family: var(--fuente-titulos); font-weight: 400; letter-spacing: .2px; }
+    .brand-name, .eyebrow, .motto { font-family: var(--fuente-decorativa); }
+    .history-grid { display: grid; gap: 15px; }
+    .history-item { border-left: 5px solid var(--amarillo); padding: 18px 20px; background: white; border-radius: 0 16px 16px 0; box-shadow: 0 5px 20px rgba(24,2,123,.06); }
+    .history-year { font-family: var(--fuente-titulos); font-size: 29px; color: var(--azul); }
+    .history-item p { margin: 8px 0 0; line-height: 1.65; }
+    .mission-grid { display: grid; gap: 16px; }
+    .mission-grid h3 { margin: 0 0 12px; font-family: var(--fuente-titulos); font-size: 27px; font-weight: 400; color: var(--azul); }
+    .mission-grid .card:nth-child(2) { background: #eaf8fc; }
+    .closing-message { margin-top: 22px; font-family: var(--fuente-decorativa); font-size: 23px; color: var(--azul); text-align: center; font-weight: 700; line-height: 1.3; }
+    @media(min-width: 768px) { .mission-grid { grid-template-columns: repeat(2, 1fr); } .history-grid { grid-template-columns: repeat(3, 1fr); } }
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.97);
+      border-bottom: 1px solid #e9ecf4;
+      box-shadow: 0 3px 16px rgba(16,31,114,.05);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--azul);
+    }
+    .brand img {
+      width: 49px;
+      height: 49px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .brand-name {
+      font-weight: 800;
+      font-size: 15px;
+      line-height: 1.08;
+    }
+    .brand-name span {
+      display: block;
+      color: var(--azul-claro);
+    }
+    .menu-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 12px;
+      background: #edf0ff;
+      color: var(--azul);
+      font-size: 27px;
+      cursor: pointer;
+    }
+    .nav {
+      display: none;
+      padding: 8px 18px 18px;
+      background: white;
+      border-top: 1px solid #edf0f7;
+    }
+    .nav.open {
+      display: grid;
+      gap: 4px;
+    }
+    .nav a {
+      display: block;
+      padding: 12px;
+      border-radius: 10px;
+      color: var(--azul);
+      font-weight: 600;
+    }
+    .nav a:focus-visible,
+    .nav a:hover {
+      background: #edf0ff;
+    }
+    .hero {
+      position: relative;
+      min-height: 490px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      color: white;
+      background: var(--azul);
+    }
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        0deg,
+        rgba(24,2,123,.98) 0%,
+        rgba(24,2,123,.78) 45%,
+        rgba(24,2,123,.12) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 70px 0 64px;
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 14px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.18);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      max-width: 570px;
+      margin: 20px 0 14px;
+      font-size: clamp(35px, 9vw, 65px);
+      line-height: 1.06;
+      letter-spacing: -.8px;
+    }
+    .hero h1 span {
+      display: block;
+      color: var(--amarillo);
+    }
+    .hero p {
+      max-width: 470px;
+      font-size: 17px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 22px;
+      border-radius: 40px;
+      font-weight: 700;
+      text-align: center;
+      background: var(--amarillo);
+      color: var(--azul);
+      box-shadow: 0 6px 18px rgba(0,0,0,.12);
+    }
+    section.content-section {
+      padding: 52px 0 0;
+    }
+    .section-heading {
+      margin: 0 0 18px;
+      font-size: clamp(27px, 7vw, 38px);
+      color: var(--azul);
+      line-height: 1.12;
+      font-weight: 800;
+    }
+    .section-heading::after {
+      content: "";
+      display: block;
+      width: 65px;
+      height: 5px;
+      margin-top: 12px;
+      border-radius: 8px;
+      background: var(--amarillo);
+    }
+    .card {
+      padding: 25px;
+      border-radius: var(--radio);
+      background: white;
+      box-shadow: 0 7px 26px rgba(16,31,114,.07);
+    }
+    .card-blue {
+      background: #eaf2ff;
+    }
+    .card-yellow {
+      background: #fff5d8;
+    }
+    .card p {
+      font-size: 17px;
+      line-height: 1.65;
+      margin: 0;
+    }
+    .section-photo {
+      width: 100%;
+      height: 235px;
+      margin-top: 20px;
+      border-radius: var(--radio);
+      object-fit: cover;
+      background: #e7ecf6;
+    }
+    .feature-grid {
+      display: grid;
+      gap: 20px;
+    }
+    .locations {
+      display: grid;
+      gap: 12px;
+    }
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 16px;
+      border: 1px solid #dce4ff;
+      border-radius: 14px;
+      background: white;
+      color: var(--azul);
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .location-icon {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #fff1b5;
+    }
+    .formation {
+      text-align: center;
+      background: var(--azul);
+      color: white;
+      border-radius: var(--radio);
+      padding: 32px 22px;
+    }
+    .formation h2 {
+      color: white;
+      margin: 0 0 12px;
+      font-size: 28px;
+    }
+    .formation p {
+      line-height: 1.6;
+      margin: 0 auto 20px;
+      max-width: 480px;
+    }
+    .manual {
+      width: min(100%, 230px);
+      max-height: 330px;
+      object-fit: contain;
+      margin: 0 auto;
+      border-radius: 8px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+    }
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 15px;
+      background: #e7ecf6;
+    }
+    .gallery img:first-child {
+      grid-column: 1 / -1;
+      aspect-ratio: 16 / 10;
+    }
+    .gallery-note {
+      color: #69718d;
+      font-size: 13px;
+      margin-top: 12px;
+      text-align: center;
+    }
+    footer {
+      margin-top: 65px;
+      padding: 48px 20px 35px;
+      text-align: center;
+      background: var(--azul);
+      color: white;
+      border-top: 8px solid var(--amarillo);
+    }
+    footer h2 {
+      font-size: 28px;
+      line-height: 1.15;
+      margin: 0 0 12px;
+    }
+    footer .motto {
+      font-size: 18px;
+      color: var(--amarillo);
+    }
+    footer .copyright {
+      margin-top: 35px;
+      font-size: 13px;
+      opacity: .8;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+    @media (min-width: 768px) {
+      .header-inner { min-height: 85px; }
+      .menu-toggle { display: none; }
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 1px;
+        padding: 0;
+        border: 0;
+      }
+      .nav a { padding: 10px 8px; font-size: 13px; }
+      .hero { min-height: 590px; }
+      .hero-content { padding-bottom: 95px; }
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
+      }
+      .feature-grid .section-photo {
+        height: 100%;
+        min-height: 300px;
+        margin: 0;
+      }
+      .gallery {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .gallery img:first-child {
+        grid-column: auto;
+        aspect-ratio: 1 / 1;
+      }
+      .locations {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#inicio" class="brand" aria-label="JMV Honduras, inicio">
+        <img src="imagenes/logo.png" alt="Logo JMV">
+        <div class="brand-name">
+          Juventudes Marianas<br>
+          Vicentinas
+          <span>Tegucigalpa</span>
+        </div>
+      </a>
+      <button class="menu-toggle" id="menuToggle"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="nav">
+        ☰
+      </button>
+      <nav class="nav" id="nav" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#nosotros">Quiénes somos</a>
+        <a href="#servicio">Qué hacemos</a>
+        <a href="#mision-vision">Misión y visión</a>
+        <a href="#historia">Historia</a>
+        <a href="#ubicaciones">Comunidades</a>
+        <a href="#galeria">Galería</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="inicio">
+      <img class="hero-image"
+        src="imagenes/portada.jpeg"
+        alt="Jóvenes reunidos en una actividad comunitaria">
+      <div class="container hero-content">
+        <span class="eyebrow">JMV Tegucigalpa</span>
+        <h1>
+          Juventudes Marianas
+          Vicentinas
+          <span>Tegucigalpa</span>
+        </h1>
+        <p>
+         A Jesús por María
+        </p>
+        <a href="#nosotros" class="btn">
+          Conoce nuestra asociación ↓
+        </a>
+      </div>
+    </section>
+    <section class="content-section" id="nosotros">
+      <div class="container reveal">
+        <h2 class="section-heading">¿Quiénes somos?</h2>
+        <div class="feature-grid">
+          <div class="card card-blue">
+            <p>
+              Somos una asociación internacional de jóvenes católicos que, inspirados en el ejemplo de la Virgen María y el carisma de San Vicente de Paúl, buscamos crecer en la fe, fortalecer nuestra relación con Jesucristo y comprometernos con el servicio a los demás, especialmente con quienes más lo necesitan. Nuestra misión es vivir el Evangelio desde nuestra realidad como jóvenes, siendo parte activa de la Iglesia y construyendo una sociedad más justa y fraterna.
+            </p>
+          </div>
+          <img class="section-photo"
+            src="imagenes/3.jpeg"
+            loading="lazy"
+            alt="Jóvenes participando en una reunión comunitaria">
+        </div>
+      </div>
+    </section>
+    <section class="content-section" id="servicio">
+      <div class="container reveal">
+        <h2 class="section-heading">¿Qué hacemos y por qué?</h2>
+        <div class="feature-grid">
+          <div class="card card-yellow">
+            <p>
+              Realizamos actividades de formación espiritual, crecimiento personal, convivencia y servicio a los demás, especialmente a quienes más lo necesitan. Lo hacemos porque buscamos acercar a los jóvenes a Jesucristo, fortalecer nuestra fe y poner en práctica el carisma vicentino, siguiendo el ejemplo de María y San Vicente de Paúl. Nuestro propósito es formar jóvenes comprometidos con Dios, la Iglesia y la sociedad.
+            </p>
+          </div>
+          <img class="section-photo"
+            src="imagenes/2.jpeg"
+            loading="lazy"
+            alt="Jóvenes participando en una actividad de servicio">
+        </div>
+      </div>
+    </section>
+    <section class="content-section" id="ubicaciones">
+      <div class="container reveal">
+        <h2 class="section-heading">¿Dónde estamos?</h2>
+        <div class="locations">
+          <div class="location">
+            <span class="location-icon">📍</span>
+            Tegucigalpa
+          </div>
+          <div class="location">
+            <span class="location-icon">📍</span>
+            San Antonio de Cortés
+          </div>
+          <div class="location">
+            <span class="location-icon">📍</span>
+            Cuyamel
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="content-section" id="reuniones">
+      <div class="container reveal">
+        <h2 class="section-heading">¿Cuándo nos reunimos?</h2>
+
+        <div class="card card-yellow">
+          <p>
+            Nos reunimos todos los sábados, de 2:00 p. m. a 4:00 p. m.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="content-section" id="mision-vision">
+      <div class="container reveal">
+        <h2 class="section-heading">Misión y visión</h2>
+        <div class="mission-grid">
+          <article class="card card-yellow">
+            <h3>Nuestra misión</h3>
+            <p>Evangelizar y acompañar a los jóvenes en su crecimiento espiritual, personal y comunitario, promoviendo el encuentro con Jesucristo a través de María y viviendo el carisma de San Vicente de Paúl mediante la oración, la formación y el servicio a los más necesitados.</p>
+          </article>
+          <article class="card">
+            <h3>Nuestra visión</h3>
+            <p>Ser una asociación de jóvenes comprometidos con Dios, la Iglesia y la sociedad, que, inspirados en María y San Vicente de Paúl, sean agentes de cambio, evangelización y servicio, llevando el amor de Cristo a sus comunidades.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="content-section" id="historia">
+      <div class="container reveal">
+        <h2 class="section-heading">Nuestra historia</h2>
+        <p style="line-height:1.7; margin-bottom:22px">La historia de las Juventudes Marianas Vicentinas tiene su origen en <strong>1830, en París, Francia</strong>, a partir de las apariciones de la Virgen María a Santa Catalina Labouré, en la capilla de la Casa Madre de las Hijas de la Caridad.</p>
+        <div class="history-grid">
+          <article class="history-item"><div class="history-year">1830</div><p>Durante estas apariciones, la Virgen manifestó su deseo de que se formara una asociación de jóvenes bajo su protección, dando origen a la Asociación de Hijos e Hijas de María.</p></article>
+          <article class="history-item"><div class="history-year">1847</div><p>La asociación recibió la aprobación oficial del papa Pío IX, permitiendo su expansión a diferentes partes del mundo.</p></article>
+          <article class="history-item"><div class="history-year">1999</div><p>El 2 de febrero, la Santa Sede aprobó los Estatutos Internacionales y se consolidó el nombre de Juventud Mariana Vicenciana (JMV), manteniendo su identidad mariana y vicentina.</p></article>
+        </div>
+        <p style="line-height:1.7; margin-top:22px">Desde entonces, JMV continúa su misión de formar jóvenes en la fe, siguiendo el ejemplo de María y San Vicente de Paúl, promoviendo la evangelización y el servicio a los más necesitados.</p>
+        <p class="closing-message">Nuestra historia sigue escribiéndose con cada joven que decide vivir su fe y ponerla al servicio de los demás.</p>
+      </div>
+    </section>
+    <section class="content-section" id="formacion">
+      <div class="container reveal">
+        <div class="formation">
+          <h2>Nuestra formación</h2>
+          <p>
+            Los jóvenes participan en procesos formativos
+            que fortalecen su espiritualidad mariana,
+            su vida comunitaria y el carisma vicentino.
+          </p>
+          <img class="manual"
+            src="imagenes/manual.jpeg"
+            loading="lazy"
+            alt="Portada del Manual de JMV Honduras">
+        </div>
+      </div>
+    </section>
+    <section class="content-section" id="galeria">
+      <div class="container reveal">
+        <h2 class="section-heading">Vida en comunidad</h2>
+        <div class="gallery">
+          <img src="imagenes/1.jpeg"
+            alt="Encuentro de jóvenes" loading="lazy">
+          <img src="imagenes/4.jpeg"
+            alt="Actividad formativa" loading="lazy">
+          <img src="imagenes/5.jpeg"
+            alt="Jornada de servicio" loading="lazy">
+          <img src="imagenes/6.jpeg"
+            alt="Convivencia comunitaria" loading="lazy">
+          <img src="imagenes/7.jpeg"
+            alt="Encuentro de JMV" loading="lazy">
+        </div>
+        <p class="gallery-note">
+          Compartimos nuestra fe, formación y servicio en comunidad.
+        </p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <h2>A JESÚS CON MARÍA</h2>
+    <div class="motto">Contemplar | Vivir | Servir</div>
+    <p>Juventudes Marianas Vicentinas Tegucigalpa</p>
+    <p class="copyright">
+      © <span id="year"></span> JMV Tegucigalpa
+    </p>
+  </footer>
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const nav = document.getElementById("nav");
+    function closeMenu() {
+      nav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Abrir menú");
+      menuToggle.textContent = "☰";
+    }
+    menuToggle.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Cerrar menú" : "Abrir menú"
+      );
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+    nav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", closeMenu);
+    });
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+
+      document.querySelectorAll(".reveal").forEach(element => {
+        observer.observe(element);
+      });
+    } else {
+      document.querySelectorAll(".reveal").forEach(element => {
+        element.classList.add("visible");
+      });
+    }
+  </script>
+</body>
+</html>
